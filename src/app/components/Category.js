@@ -3,7 +3,7 @@ import { useState } from "react";
 import Subcategory from "./Subcategory";
 
 
-function Category({cat_name_en, no_of_subcat, no_of_dua, cat_icon}){
+function Category({cat_name_en, no_of_subcat, no_of_dua, cat_icon, subCategories, duas}){
     const [isSubcategoriesOpen, setIsSubcategoriesOpen] = useState(false);
     function toggleSubcategories() {
         setIsSubcategoriesOpen(!isSubcategoriesOpen);
@@ -25,7 +25,14 @@ function Category({cat_name_en, no_of_subcat, no_of_dua, cat_icon}){
                 </div>
             </button>
             <div className={`subcategory-container ${isSubcategoriesOpen? '' : 'hidden'}`}>
-                <Subcategory/>
+                {
+                    subCategories.map((subcat,index)=>{
+                        return (
+
+                            <Subcategory subcat_name_en={subcat.subcat_name_en} key={index}/>
+                        )
+                    })
+                }
             </div>
         </div>
     );

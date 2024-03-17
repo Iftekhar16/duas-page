@@ -3,7 +3,7 @@ import { useState } from "react";
 import Dua from "./Dua";
 
 
-function Subcategory(){
+function Subcategory({subcat_name_en}){
     const [isDuasOpen, setIsDuasOpen] = useState(false);
     function toggleDuas() {
         // setIsDuasOpen(prevState => !prevState);
@@ -17,7 +17,7 @@ function Subcategory(){
                 <div className="dot w-2 h-2 bg-accent1 rounded-full absolute left-1/2 -translate-x-1/2 top-5"></div>
             </div>
             <div className="">
-                <button onClick={toggleDuas} className="subcategory hover:bg-gray3 rounded-lg px-3 py-2 w-full text-sm font-medium leading-snug text-left transition">The servant is dependent on his Lord asdasdassdasdasd</button>
+                <button onClick={toggleDuas} className="subcategory hover:bg-gray3 rounded-lg px-3 py-2 w-full text-sm font-medium leading-snug text-left transition">{subcat_name_en}</button>
                 <div className={`duas-container ${isDuasOpen? '':'hidden'}`}>
                     <Dua></Dua>
                 </div>

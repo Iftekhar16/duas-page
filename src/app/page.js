@@ -20,7 +20,7 @@ export default function Home() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await fetch('http://localhost:3000/api');
+          const response = await fetch('https://iftekhar-duas-page.vercel.app/api');
           const data = await response.json();
   
           setCategories(data.categories);
@@ -46,8 +46,12 @@ export default function Home() {
         setIsModalOpen(false);
     }
 
-    
-
+    function getSubcategories(catId) {
+        return subCategories.filter(subCategory => subCategory.cat_id === catId);
+      }
+    function getDuas(subId) {
+        return duas.filter(dua => dua.subcat_id === subId);
+          }
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     function openProfile(){
         // if(isProfileOpen === true){
@@ -271,8 +275,9 @@ export default function Home() {
 
                         <div className="categories-container pl-2">
                             {
+
                                 categories.map((category, index) => {
-                                    return <Category cat_icon={category.cat_icon} cat_name_en={category.cat_name_en} no_of_dua={category.no_of_dua} no_of_subcat={category.no_of_subcat} key={index}/>
+                                    return <Category cat_icon={category.cat_icon} cat_name_en={category.cat_name_en} no_of_dua={category.no_of_dua} no_of_subcat={category.no_of_subcat} key={index} subCategories={getSubcategories(category.cat_id)}/>
                                 })
                             }
                         </div>
